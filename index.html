@@ -1,1 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untuk Reva 💗</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ffd6e7, #fff4f8);
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      width: 90%;
+      max-width: 430px;
+      padding: 30px 24px;
+      background: white;
+      border-radius: 25px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+      animation: masuk 0.5s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes masuk {
+      from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .emoji {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #ff5c96;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    button {
+      border: none;
+      padding: 13px 24px;
+      margin: 5px;
+      border-radius: 25px;
+      background: #ff6fa5;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    .no {
+      background: #e5e5e5;
+      color: #555;
+    }
+
+    /* PIN */
+
+    .pin-container {
+      display: flex;
+      justify-content: center;
+      gap: 7px;
+      margin: 20px 0;
+    }
+
+    .pin-box {
+      width: 42px;
+      height: 48px;
+      border: 2px solid #ffc1d8;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 22px;
+      outline: none;
+    }
+
+    .keypad {
+      width: 260px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .keypad button {
+      margin: 0;
+      padding: 15px;
+      background: #ffe0eb;
+      color: #555;
+    }
+
+    #error {
+      color: #ff4f7f;
+      min-height: 25px;
+      font-size: 14px;
+    }
+
+    /* PESAN */
+
+    .message {
+      text-align: left;
+      background: #fff3f7;
+      padding: 18px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      resize: none;
+      border: 2px solid #ffd0df;
+      border-radius: 15px;
+      padding: 13px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: #ff82ad;
+    }
+
+    .heart {
+      position: fixed;
+      pointer-events: none;
+      animation: jatuh 3s linear forwards;
+      font-size: 25px;
+    }
+
+    @keyframes jatuh {
+      from {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 1;
+      }
+
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================= -->
+  <!-- HALAMAN 1 - SAPAAN -->
+  <!-- ========================= -->
+
+  <div class="page active" id="page1">
+
+    <div class="emoji">💌</div>
+
+    <h1>Hai, Reva Della Natalya 🤍</h1>
+
+    <p>
+      Heii Revaa 👋🏻<br><br>
+      Aku punya sesuatu yang pengen aku sampaikan
+      ke kamu.
+      <br><br>
+      Tapi sebelum itu, ada satu hal kecil dulu.
+    </p>
+
+    <button onclick="nextPage(2)">
+      Lanjut →
+    </button>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- HALAMAN 2 - PIN -->
+  <!-- ========================= -->
+
+  <div class="page" id="page2">
+
+    <div class="emoji">🔐</div>
+
+    <h1>Secret PIN</h1>
+
+    <p>
+      Masukkan 6 digit PIN untuk lanjut 👀
+    </p>
+
+    <div class="pin-container">
+
+      <input class="pin-box" readonly>
+      <input class="pin-box" readonly>
+      <input class="pin-box" readonly>
+      <input class="pin-box" readonly>
+      <input class="pin-box" readonly>
+      <input class="pin-box" readonly>
+
+    </div>
+
+    <p id="error"></p>
+
+    <div class="keypad">
+
+      <button onclick="addNumber('1')">1</button>
+      <button onclick="addNumber('2')">2</button>
+      <button onclick="addNumber('3')">3</button>
+
+      <button onclick="addNumber('4')">4</button>
+      <button onclick="addNumber('5')">5</button>
+      <button onclick="addNumber('6')">6</button>
+
+      <button onclick="addNumber('7')">7</button>
+      <button onclick="addNumber('8')">8</button>
+      <button onclick="addNumber('9')">9</button>
+
+      <button onclick="deleteNumber()">⌫</button>
+      <button onclick="addNumber('0')">0</button>
+      <button onclick="checkPIN()">✓</button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- HALAMAN 3 - PERASAAN -->
+  <!-- ========================= -->
+
+  <div class="page" id="page3">
+
+    <div class="emoji">💗</div>
+
+    <h1>Aku mau jujur...</h1>
+
+    <div class="message">
+
+      <p>
+        Reva, sebenarnya ada sesuatu yang
+        udah cukup lama pengen aku bilang.
+        <br><br>
+
+        Aku nyaman banget sama kamu.
+        Aku senang setiap kali kita ngobrol,
+        bercanda, ataupun menghabiskan waktu bareng.
+        <br><br>
+
+        Mungkin selama ini aku nggak selalu
+        bisa mengungkapinnya dengan baik.
+        <br><br>
+
+        Tapi sekarang aku mau jujur
+        tentang apa yang aku rasain.
+      </p>
+
+    </div>
+
+    <button onclick="nextPage(4)">
+      Lanjut 💌
+    </button>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- HALAMAN 4 - PESAN & JAWABAN -->
+  <!-- ========================= -->
+
+  <div class="page" id="page4">
+
+    <div class="emoji">🥹</div>
+
+    <h1>Untuk Reva 🤍</h1>
+
+    <div class="message">
+
+      <p>
+        Aku nggak mau maksa kamu buat jawab
+        sesuai yang aku harapkan.
+        <br><br>
+
+        Aku cuma pengen kamu jawab dengan
+        apa yang sebenarnya kamu rasain.
+        <br><br>
+
+        Jadi...
+        <br><br>
+
+        <b>
+          Mau nggak kita coba jalanin
+          sesuatu yang lebih dari sekadar teman?
+        </b>
+      </p>
+
+    </div>
+
+    <button onclick="chooseAnswer('MAU ❤️')">
+      MAU ❤️
+    </button>
+
+    <button class="no" onclick="chooseAnswer('NGGAK 😭')">
+      NGGAK 😭
+    </button>
+
+    <br><br>
+
+    <textarea
+      id="pesan"
+      placeholder="Kalau ada yang mau kamu sampaikan ke aku, tulis di sini...">
+    </textarea>
+
+    <br>
+
+    <button onclick="sendAnswer()">
+      Kirim Jawaban 💌
+    </button>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- HALAMAN 5 - HASIL -->
+  <!-- ========================= -->
+
+  <div class="page" id="page5">
+
+    <div class="emoji">💗</div>
+
+    <h1>Terima kasih 🤍</h1>
+
+    <p id="resultText"></p>
+
+  </div>
+
+
+<script>
+
+  /* =========================
+     PENGATURAN WEBSITE
+     ========================= */
+
+  const PIN_BENAR = "241208";
+
+  let pin = "";
+  let jawaban = "";
+
+
+  /* =========================
+     PIN
+     ========================= */
+
+  function addNumber(number) {
+
+    if (pin.length >= 6) return;
+
+    pin += number;
+
+    updatePin();
+
+  }
+
+
+  function deleteNumber() {
+
+    pin = pin.slice(0, -1);
+
+    updatePin();
+
+    document.getElementById("error").innerText = "";
+
+  }
+
+
+  function updatePin() {
+
+    const boxes = document.querySelectorAll(".pin-box");
+
+    boxes.forEach((box, index) => {
+
+      box.value = pin[index] ? "•" : "";
+
+    });
+
+  }
+
+
+  function checkPIN() {
+
+    if (pin === PIN_BENAR) {
+
+      document.getElementById("error").innerText = "";
+
+      nextPage(3);
+
+    } else {
+
+      document.getElementById("error").innerText =
+        "Sepertinya kamu memasukkan kode yang salah, coba masukan sesuai tanggal lahir kamu.";
+
+      pin = "";
+
+      updatePin();
+
+    }
+
+  }
+
+
+  /* =========================
+     PINDAH HALAMAN
+     ========================= */
+
+  function nextPage(number) {
+
+    document.querySelectorAll(".page").forEach(page => {
+
+      page.classList.remove("active");
+
+    });
+
+    document.getElementById("page" + number)
+      .classList.add("active");
+
+  }
+
+
+  /* =========================
+     PILIH JAWABAN
+     ========================= */
+
+  function chooseAnswer(answer) {
+
+    jawaban = answer;
+
+  }
+
+
+  /* =========================
+     KIRIM JAWABAN
+     ========================= */
+
+  function sendAnswer() {
+
+    const pesan = document
+      .getElementById("pesan")
+      .value
+      .trim();
+
+
+    if (jawaban === "") {
+
+      alert("Pilih jawaban kamu dulu yaa 😭");
+
+      return;
+
+    }
+
+
+    if (pesan === "") {
+
+      alert("Tulis pesan buat aku dulu yaa 💌");
+
+      return;
+
+    }
+
+
+    nextPage(5);
+
+
+    document.getElementById("resultText").innerHTML =
+
+      "Jawaban kamu: <b>" +
+      jawaban +
+      "</b><br><br>" +
+
+      "Pesan kamu sudah diterima 💌<br><br>" +
+
+      "Makasih sudah menjawab dengan jujur 🤍";
+
+
+    createHearts();
+
+
+    /*
+      NANTI BAGIAN DISCORD AKAN DITAMBAHKAN
+      SETELAH WEBSITE DASARNYA SELESAI.
+
+      Jawaban:
+      jawaban
+
+      Pesan:
+      pesan
+    */
+
+  }
+
+
+  /* =========================
+     ANIMASI HATI
+     ========================= */
+
+  function createHearts() {
+
+    const emojis = ["❤️", "💗", "💕", "💖", "✨"];
+
+    for (let i = 0; i < 35; i++) {
+
+      const heart = document.createElement("div");
+
+      heart.className = "heart";
+
+      heart.innerText =
+        emojis[Math.floor(Math.random() * emojis.length)];
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.animationDuration =
+        (2 + Math.random() * 2) + "s";
+
+      document.body.appendChild(heart);
+
+
+      setTimeout(() => {
+
+        heart.remove();
+
+      }, 4000);
+
+    }
+
+  }
+
+</script>
+
+</body>
+</html>
