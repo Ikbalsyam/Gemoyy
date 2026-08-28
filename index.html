@@ -1,565 +1,497 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Untuk Reva 💗</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+<title>hey, Reva.</title>
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ffd6e7, #fff4f8);
-      overflow: hidden;
-    }
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
 
-    .page {
-      display: none;
-      width: 90%;
-      max-width: 430px;
-      padding: 30px 24px;
-      background: white;
-      border-radius: 25px;
-      text-align: center;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.12);
-      animation: masuk 0.5s ease;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .page.active {
-      display: block;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 20%, #3b1d36 0, transparent 35%),
+    radial-gradient(circle at 80% 80%, #251d3b 0, transparent 35%),
+    #111014;
+  color: #f5edf2;
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-    @keyframes masuk {
-      from {
-        opacity: 0;
-        transform: translateY(15px) scale(0.96);
-      }
+.page {
+  display: none;
+  width: 100%;
+  max-width: 430px;
+  padding: 35px 28px;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 28px;
+  background: rgba(25,23,29,.88);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 70px rgba(0,0,0,.35);
+  animation: appear .45s ease;
+}
 
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
+.page.active {
+  display: block;
+}
 
-    .emoji {
-      font-size: 55px;
-      margin-bottom: 15px;
-    }
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-    h1 {
-      color: #ff5c96;
-      margin-bottom: 15px;
-    }
+.small {
+  color: #b7aeb5;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
-    p {
-      color: #555;
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  font-weight: 500;
+  margin: 12px 0 18px;
+}
 
-    button {
-      border: none;
-      padding: 13px 24px;
-      margin: 5px;
-      border-radius: 25px;
-      background: #ff6fa5;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+p {
+  color: #cfc6cd;
+  line-height: 1.7;
+  font-size: 15px;
+}
 
-    button:hover {
-      transform: scale(1.05);
-    }
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 13px 20px;
+  margin-top: 12px;
+  width: 100%;
+  background: #e58ab1;
+  color: #171318;
+  font-weight: 600;
+  font-size: 15px;
+  transition: .2s;
+}
 
-    .no {
-      background: #e5e5e5;
-      color: #555;
-    }
+button:active {
+  transform: scale(.97);
+}
 
-    /* PIN */
+button.secondary {
+  background: #29262d;
+  color: #d8d0d5;
+}
 
-    .pin-container {
-      display: flex;
-      justify-content: center;
-      gap: 7px;
-      margin: 20px 0;
-    }
+/* PIN */
 
-    .pin-box {
-      width: 42px;
-      height: 48px;
-      border: 2px solid #ffc1d8;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 22px;
-      outline: none;
-    }
+.pin {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 25px 0 10px;
+}
 
-    .keypad {
-      width: 260px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
+.pin input {
+  width: 42px;
+  height: 50px;
+  border-radius: 12px;
+  border: 1px solid #3b353d;
+  background: #17151a;
+  color: #e58ab1;
+  text-align: center;
+  font-size: 22px;
+}
 
-    .keypad button {
-      margin: 0;
-      padding: 15px;
-      background: #ffe0eb;
-      color: #555;
-    }
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 20px;
+}
 
-    #error {
-      color: #ff4f7f;
-      min-height: 25px;
-      font-size: 14px;
-    }
+.keypad button {
+  width: auto;
+  margin: 0;
+  background: #211f24;
+  color: #eee;
+}
 
-    /* PESAN */
+#error {
+  min-height: 22px;
+  color: #e58ab1;
+  font-size: 12px;
+}
 
-    .message {
-      text-align: left;
-      background: #fff3f7;
-      padding: 18px;
-      border-radius: 15px;
-      margin-bottom: 20px;
-    }
+/* CONFESSION */
 
-    textarea {
-      width: 100%;
-      height: 120px;
-      resize: none;
-      border: 2px solid #ffd0df;
-      border-radius: 15px;
-      padding: 13px;
-      font-size: 14px;
-      outline: none;
-    }
+.quote {
+  border-left: 2px solid #e58ab1;
+  padding-left: 15px;
+  margin: 25px 0;
+}
 
-    textarea:focus {
-      border-color: #ff82ad;
-    }
+.answer {
+  display: flex;
+  gap: 10px;
+}
 
-    .heart {
-      position: fixed;
-      pointer-events: none;
-      animation: jatuh 3s linear forwards;
-      font-size: 25px;
-    }
+.answer button {
+  flex: 1;
+}
 
-    @keyframes jatuh {
-      from {
-        transform: translateY(-50px) rotate(0deg);
-        opacity: 1;
-      }
+textarea {
+  width: 100%;
+  height: 110px;
+  margin-top: 20px;
+  padding: 14px;
+  resize: none;
+  border-radius: 15px;
+  border: 1px solid #3b353d;
+  background: #17151a;
+  color: white;
+  outline: none;
+  font-family: inherit;
+}
 
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-  </style>
+textarea::placeholder {
+  color: #777078;
+}
+
+.selected {
+  outline: 2px solid #e58ab1;
+}
+
+.result {
+  text-align: center;
+}
+
+.result .big {
+  font-size: 55px;
+  margin-bottom: 10px;
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- ========================= -->
-  <!-- HALAMAN 1 - SAPAAN -->
-  <!-- ========================= -->
+<!-- 1 -->
 
-  <div class="page active" id="page1">
+<section class="page active" id="page1">
 
-    <div class="emoji">💌</div>
+  <div class="small">a little something</div>
 
-    <h1>Hai, Reva Della Natalya 🤍</h1>
+  <h1>hey, Reva.</h1>
+
+  <p>
+    Sebelum kamu pergi ke mana-mana,
+    coba luangin waktu sebentar buat ini.
+  </p>
+
+  <button onclick="nextPage(2)">
+    lanjut
+  </button>
+
+</section>
+
+
+<!-- 2 -->
+
+<section class="page" id="page2">
+
+  <div class="small">one little lock</div>
+
+  <h1>6 digits.</h1>
+
+  <p>
+    Harusnya kamu tahu angka yang satu ini.
+  </p>
+
+  <div class="pin">
+
+    <input id="p1" readonly>
+    <input id="p2" readonly>
+    <input id="p3" readonly>
+    <input id="p4" readonly>
+    <input id="p5" readonly>
+    <input id="p6" readonly>
+
+  </div>
+
+  <div id="error"></div>
+
+  <div class="keypad">
+
+    <button onclick="add('1')">1</button>
+    <button onclick="add('2')">2</button>
+    <button onclick="add('3')">3</button>
+
+    <button onclick="add('4')">4</button>
+    <button onclick="add('5')">5</button>
+    <button onclick="add('6')">6</button>
+
+    <button onclick="add('7')">7</button>
+    <button onclick="add('8')">8</button>
+    <button onclick="add('9')">9</button>
+
+    <button onclick="hapus()">⌫</button>
+    <button onclick="add('0')">0</button>
+    <button onclick="check()">✓</button>
+
+  </div>
+
+</section>
+
+
+<!-- 3 -->
+
+<section class="page" id="page3">
+
+  <div class="small">okay, here goes</div>
+
+  <h1>Jadi gini...</h1>
+
+  <div class="quote">
 
     <p>
-      Heii Revaa 👋🏻<br><br>
-      Aku punya sesuatu yang pengen aku sampaikan
-      ke kamu.
-      <br><br>
-      Tapi sebelum itu, ada satu hal kecil dulu.
+      Ada satu hal yang sebenarnya pengen
+      aku bilang dari beberapa waktu lalu.
     </p>
-
-    <button onclick="nextPage(2)">
-      Lanjut →
-    </button>
-
-  </div>
-
-
-  <!-- ========================= -->
-  <!-- HALAMAN 2 - PIN -->
-  <!-- ========================= -->
-
-  <div class="page" id="page2">
-
-    <div class="emoji">🔐</div>
-
-    <h1>Secret PIN</h1>
 
     <p>
-      Masukkan 6 digit PIN untuk lanjut 👀
+      Aku suka ngobrol sama kamu.
+      Aku suka waktu yang kita habiskan bareng.
+      Dan makin lama, rasanya aku nggak bisa
+      nganggep kamu cuma sebagai teman biasa.
     </p>
 
-    <div class="pin-container">
-
-      <input class="pin-box" readonly>
-      <input class="pin-box" readonly>
-      <input class="pin-box" readonly>
-      <input class="pin-box" readonly>
-      <input class="pin-box" readonly>
-      <input class="pin-box" readonly>
-
-    </div>
-
-    <p id="error"></p>
-
-    <div class="keypad">
-
-      <button onclick="addNumber('1')">1</button>
-      <button onclick="addNumber('2')">2</button>
-      <button onclick="addNumber('3')">3</button>
-
-      <button onclick="addNumber('4')">4</button>
-      <button onclick="addNumber('5')">5</button>
-      <button onclick="addNumber('6')">6</button>
-
-      <button onclick="addNumber('7')">7</button>
-      <button onclick="addNumber('8')">8</button>
-      <button onclick="addNumber('9')">9</button>
-
-      <button onclick="deleteNumber()">⌫</button>
-      <button onclick="addNumber('0')">0</button>
-      <button onclick="checkPIN()">✓</button>
-
-    </div>
-
   </div>
 
+  <p>
+    Jadi daripada terus dipendem,
+    mending aku bilang sekarang.
+  </p>
 
-  <!-- ========================= -->
-  <!-- HALAMAN 3 - PERASAAN -->
-  <!-- ========================= -->
+  <button onclick="nextPage(4)">
+    lanjut
+  </button>
 
-  <div class="page" id="page3">
+</section>
 
-    <div class="emoji">💗</div>
 
-    <h1>Aku mau jujur...</h1>
+<!-- 4 -->
 
-    <div class="message">
+<section class="page" id="page4">
 
-      <p>
-        Reva, sebenarnya ada sesuatu yang
-        udah cukup lama pengen aku bilang.
-        <br><br>
+  <div class="small">your turn</div>
 
-        Aku nyaman banget sama kamu.
-        Aku senang setiap kali kita ngobrol,
-        bercanda, ataupun menghabiskan waktu bareng.
-        <br><br>
+  <h1>Gimana menurutmu?</h1>
 
-        Mungkin selama ini aku nggak selalu
-        bisa mengungkapinnya dengan baik.
-        <br><br>
+  <p>
+    Aku nggak mau maksa kamu buat jawab
+    sesuai yang aku mau. Jawab aja sejujurnya.
+  </p>
 
-        Tapi sekarang aku mau jujur
-        tentang apa yang aku rasain.
-      </p>
+  <div class="answer">
 
-    </div>
+    <button id="mau" onclick="pilih('MAU')">
+      Mau
+    </button>
 
-    <button onclick="nextPage(4)">
-      Lanjut 💌
+    <button id="nggak"
+            class="secondary"
+            onclick="pilih('NGGAK')">
+      Nggak
     </button>
 
   </div>
 
+  <textarea
+    id="pesan"
+    placeholder="Kalau ada yang mau kamu bilang, tulis di sini...">
+  </textarea>
 
-  <!-- ========================= -->
-  <!-- HALAMAN 4 - PESAN & JAWABAN -->
-  <!-- ========================= -->
+  <button onclick="kirim()">
+    kirim jawaban
+  </button>
 
-  <div class="page" id="page4">
+</section>
 
-    <div class="emoji">🥹</div>
 
-    <h1>Untuk Reva 🤍</h1>
+<!-- 5 -->
 
-    <div class="message">
+<section class="page" id="page5">
 
-      <p>
-        Aku nggak mau maksa kamu buat jawab
-        sesuai yang aku harapkan.
-        <br><br>
+  <div class="result">
 
-        Aku cuma pengen kamu jawab dengan
-        apa yang sebenarnya kamu rasain.
-        <br><br>
+    <div class="big">♡</div>
 
-        Jadi...
-        <br><br>
+    <div class="small">message received</div>
 
-        <b>
-          Mau nggak kita coba jalanin
-          sesuatu yang lebih dari sekadar teman?
-        </b>
-      </p>
+    <h1>makasih, gemoyyy.</h1>
 
-    </div>
-
-    <button onclick="chooseAnswer('MAU ❤️')">
-      MAU ❤️
-    </button>
-
-    <button class="no" onclick="chooseAnswer('NGGAK 😭')">
-      NGGAK 😭
-    </button>
-
-    <br><br>
-
-    <textarea
-      id="pesan"
-      placeholder="Kalau ada yang mau kamu sampaikan ke aku, tulis di sini...">
-    </textarea>
-
-    <br>
-
-    <button onclick="sendAnswer()">
-      Kirim Jawaban 💌
-    </button>
+    <p id="hasil"></p>
 
   </div>
 
-
-  <!-- ========================= -->
-  <!-- HALAMAN 5 - HASIL -->
-  <!-- ========================= -->
-
-  <div class="page" id="page5">
-
-    <div class="emoji">💗</div>
-
-    <h1>Terima kasih 🤍</h1>
-
-    <p id="resultText"></p>
-
-  </div>
+</section>
 
 
 <script>
 
-  /* =========================
-     PENGATURAN WEBSITE
-     ========================= */
+const PIN = "241208";
 
-  const PIN_BENAR = "241208";
-
-  let pin = "";
-  let jawaban = "";
+let currentPin = "";
+let jawaban = "";
 
 
-  /* =========================
-     PIN
-     ========================= */
+function nextPage(number) {
 
-  function addNumber(number) {
+  document.querySelectorAll(".page")
+    .forEach(page => page.classList.remove("active"));
 
-    if (pin.length >= 6) return;
+  document
+    .getElementById("page" + number)
+    .classList.add("active");
 
-    pin += number;
+}
 
-    updatePin();
+
+function add(number) {
+
+  if (currentPin.length >= 6) return;
+
+  currentPin += number;
+
+  updatePin();
+
+}
+
+
+function hapus() {
+
+  currentPin = currentPin.slice(0, -1);
+
+  updatePin();
+
+}
+
+
+function updatePin() {
+
+  for (let i = 1; i <= 6; i++) {
+
+    document.getElementById("p" + i).value =
+      currentPin[i - 1] ? "•" : "";
 
   }
 
+}
 
-  function deleteNumber() {
 
-    pin = pin.slice(0, -1);
+function check() {
 
-    updatePin();
+  if (currentPin === PIN) {
 
     document.getElementById("error").innerText = "";
 
-  }
+    nextPage(3);
 
+  } else {
 
-  function updatePin() {
+    document.getElementById("error").innerText =
+      "Sepertinya kamu memasukkan kode yang salah, coba masukan sesuai tanggal lahir kamu.";
 
-    const boxes = document.querySelectorAll(".pin-box");
+    currentPin = "";
 
-    boxes.forEach((box, index) => {
-
-      box.value = pin[index] ? "•" : "";
-
-    });
+    updatePin();
 
   }
 
-
-  function checkPIN() {
-
-    if (pin === PIN_BENAR) {
-
-      document.getElementById("error").innerText = "";
-
-      nextPage(3);
-
-    } else {
-
-      document.getElementById("error").innerText =
-        "Sepertinya kamu memasukkan kode yang salah, coba masukan sesuai tanggal lahir kamu.";
-
-      pin = "";
-
-      updatePin();
-
-    }
-
-  }
+}
 
 
-  /* =========================
-     PINDAH HALAMAN
-     ========================= */
+function pilih(value) {
 
-  function nextPage(number) {
+  jawaban = value;
 
-    document.querySelectorAll(".page").forEach(page => {
+  document
+    .getElementById("mau")
+    .classList.remove("selected");
 
-      page.classList.remove("active");
+  document
+    .getElementById("nggak")
+    .classList.remove("selected");
 
-    });
 
-    document.getElementById("page" + number)
-      .classList.add("active");
+  if (value === "MAU") {
+
+    document
+      .getElementById("mau")
+      .classList.add("selected");
+
+  } else {
+
+    document
+      .getElementById("nggak")
+      .classList.add("selected");
 
   }
 
+}
 
-  /* =========================
-     PILIH JAWABAN
-     ========================= */
 
-  function chooseAnswer(answer) {
+function kirim() {
 
-    jawaban = answer;
+  const pesan =
+    document.getElementById("pesan").value.trim();
+
+
+  if (!jawaban) {
+
+    alert("Pilih jawaban kamu dulu.");
+
+    return;
 
   }
 
 
-  /* =========================
-     KIRIM JAWABAN
-     ========================= */
+  if (!pesan) {
 
-  function sendAnswer() {
+    alert("Tulis pesan kamu dulu.");
 
-    const pesan = document
-      .getElementById("pesan")
-      .value
-      .trim();
-
-
-    if (jawaban === "") {
-
-      alert("Pilih jawaban kamu dulu yaa 😭");
-
-      return;
-
-    }
-
-
-    if (pesan === "") {
-
-      alert("Tulis pesan buat aku dulu yaa 💌");
-
-      return;
-
-    }
-
-
-    nextPage(5);
-
-
-    document.getElementById("resultText").innerHTML =
-
-      "Jawaban kamu: <b>" +
-      jawaban +
-      "</b><br><br>" +
-
-      "Pesan kamu sudah diterima 💌<br><br>" +
-
-      "Makasih sudah menjawab dengan jujur 🤍";
-
-
-    createHearts();
-
-
-    /*
-      NANTI BAGIAN DISCORD AKAN DITAMBAHKAN
-      SETELAH WEBSITE DASARNYA SELESAI.
-
-      Jawaban:
-      jawaban
-
-      Pesan:
-      pesan
-    */
+    return;
 
   }
 
 
-  /* =========================
-     ANIMASI HATI
-     ========================= */
-
-  function createHearts() {
-
-    const emojis = ["❤️", "💗", "💕", "💖", "✨"];
-
-    for (let i = 0; i < 35; i++) {
-
-      const heart = document.createElement("div");
-
-      heart.className = "heart";
-
-      heart.innerText =
-        emojis[Math.floor(Math.random() * emojis.length)];
-
-      heart.style.left =
-        Math.random() * 100 + "vw";
-
-      heart.style.animationDuration =
-        (2 + Math.random() * 2) + "s";
-
-      document.body.appendChild(heart);
+  nextPage(5);
 
 
-      setTimeout(() => {
+  document.getElementById("hasil").innerHTML =
+    `Jawaban kamu: <b>${jawaban}</b><br><br>
+     "${pesan}"<br><br>
+     Pesan kamu sudah diterima.`;
 
-        heart.remove();
-
-      }, 4000);
-
-    }
-
-  }
+}
 
 </script>
 
 </body>
-</html>
+  </html>
